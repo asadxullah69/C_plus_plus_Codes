@@ -9,15 +9,7 @@ int main()
     cin>>num;
     string str = to_string(num);
     reverse(str.begin(),str.end());
-    for(int i=0;i<str.length();i++)
-    {
-        cout<<str[i];
-        
-        if(i<str.length()-1)
-        {
-            cout<<",";
-        }
-
-    }
+    cout<<"The number is "<<num<<" and it's revesre is "<<str<<endl;
+    
     return 0;
 }
