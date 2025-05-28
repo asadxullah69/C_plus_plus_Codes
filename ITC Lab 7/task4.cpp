@@ -6,6 +6,7 @@ int main()
     int num;
     cout<<"Enter a number:";
     cin>>num;
+    int numorg=num;
     cout<<"The number was: "<<num<<endl;
     cout<<"The number in reverse digits is: ";
     while (num>0)
@@ -15,9 +16,7 @@ int main()
         if (num>0) cout<<",";
     }
     cout<<endl;
-    string num1;
-    cout<<"Enter the number again:";
-    cin>>num1;
+    string num1 = to_string(numorg);
     cout<<"The number in digits is: ";
     for(int i=0;i<num1.length();i++)
     {
