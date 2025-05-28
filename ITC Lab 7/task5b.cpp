@@ -5,7 +5,6 @@ int main()
     int num,sum=0;
     cout<<"Enter a number:";
     cin>>num;
-    int numorg=num;
     cout<<"The number was: "<<num<<endl;
     cout<<"The number in reverse digits is: ";
     while (num>0)
