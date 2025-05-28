@@ -16,4 +16,5 @@ int main()
     }
     cout<<endl;
     cout<<"Sum of square of digits is "<<sum<<endl;
+    return 0;
 }

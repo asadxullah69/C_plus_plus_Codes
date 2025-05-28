@@ -17,4 +17,5 @@ int main()
     }
     cout<<endl;
     cout<<"Sum of the digit is "<<sum<<endl;
+    return 0;
 }
