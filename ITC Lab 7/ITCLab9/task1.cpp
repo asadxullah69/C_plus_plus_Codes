@@ -17,11 +17,11 @@ int main()
         for (int j = 1; j <= i; j++) {
             if (j == 1 || j == i || i == rows)
             {
-                cout << "* "; // Print border stars
+                cout << "* "; 
             } 
             else 
             {
-                cout << "  "; // Hollow space
+                cout << "  ";
             }
         }
 
