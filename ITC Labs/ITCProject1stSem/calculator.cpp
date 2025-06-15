@@ -100,7 +100,7 @@ int main()
         {
             for (int j = 14; j >= 0; j--) 
             {
-                int pos = i + j + 1; //Handles spaces
+                int pos = i + j + 1;
                 int mul = list[i] * list2[j];
                 result[pos] += mul;
                 result[pos - 1] += result[pos] / 10;
