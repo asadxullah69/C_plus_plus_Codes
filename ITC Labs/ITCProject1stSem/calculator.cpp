@@ -5,117 +5,121 @@ using namespace std;
 
 int main()
 {
-    string num1,num2;
+    string num1, num2;
     char oper;
-    int sum=0,diff=0,mul=0,div=0,mod=0,pow;
-    cout<<"Enter the first number: ";
-    cin>>num1;
-    cout<<"Enter the second number: ";
-    cin>>num2;
-    cout<<"Enter the operation (+,-,*,/,%, or power(p)): ";
-    cin>>oper;
-    int list[15]={};
-    int list2[15]={};
-    for(int i=0;i<15;i++)
-    {
-        list[i]=num1[i]-'0';
-        list2[i]=num2[i]-'0';
-    }
-    if (oper=='+')
-    {
-        int add[15]={};
-        int carry=0;
-        cout<<"Sum is: ";
-        for(int i=14;i>=0;i--)
-        {
-            sum = list[i]+list2[i]+carry;
-            add[i]=sum%10;
-            carry=sum/10;
-    
-        }
-        for(int i=0;i<15;i++)
-        {
-            cout<<add[i];
-        }
-    }
-    else if (oper=='-')
-    {
-        int sub[15]={};
-        int borrow=0;
-        cout<<"Subtraction is: ";
-        bool isnegative=false;
-        for(int i=0;i<15;i++) 
-        {
-            if (list[i]<list2[i])
-            {
-                isnegative=true;
-                break;
+    int sum = 0, diff = 0, mul = 0, div = 0, mod = 0, pow;
+    cout << "Enter the first number: ";
+    cin >> num1;
+    cout << "Enter the second number: ";
+    cin >> num2;
+    cout << "Enter the operation (+,-,*,/,%, or power(p)): ";
+    cin >> oper;
+    int list[15] = {};
+    int list2[15] = {};
 
-            }
-            else if(list[i]>list2[i])
+    for (int i = 0; i < 15; i++)
+    {
+        list[i] = num1[i] - '0';
+        list2[i] = num2[i] - '0';
+    }
+
+    if (oper == '+')
+    {
+        int add[15] = {};
+        int carry = 0;
+        cout << "Sum is: ";
+        for (int i = 14; i >= 0; i--)
+        {
+            sum = list[i] + list2[i] + carry;
+            add[i] = sum % 10;
+            carry = sum / 10;
+        }
+        for (int i = 0; i < 15; i++)
+        {
+            cout << add[i];
+        }
+    }
+
+    else if (oper == '-')
+    {
+        int sub[15] = {};
+        int borrow = 0;
+        cout << "Subtraction is: ";
+        bool isnegative = false;
+
+        for (int i = 0; i < 15; i++)
+        {
+            if (list[i] < list2[i])
             {
+                isnegative = true;
                 break;
             }
-        for(int i=0;i<15;i++)
-        {
-            if(isnegative)
+            else if (list[i] > list2[i])
             {
-                swap(list[i],list2[i]);
+                break;
             }
         }
 
-        }
-        for(int i=14;i>=0;i--)
+        if (isnegative)
         {
-            diff = list[i]-list2[i]-borrow;
-            if(diff<0)
+            for (int i = 0; i < 15; i++)
             {
-                diff = diff+10;
-                borrow =1;
+                swap(list[i], list2[i]);
+            }
+        }
+
+        for (int i = 14; i >= 0; i--)
+        {
+            diff = list[i] - list2[i] - borrow;
+            if (diff < 0)
+            {
+                diff = diff + 10;
+                borrow = 1;
             }
             else
             {
-                borrow =0;
+                borrow = 0;
             }
-            
-            sub[i]=diff;
+            sub[i] = diff;
         }
-        if(isnegative)
-            {
-                cout<<"-";
-            }
-        for(int i=0;i<15;i++)
+
+        if (isnegative)
         {
-            cout<<sub[i];
+            cout << "-";
         }
-    
+
+        for (int i = 0; i < 15; i++)
+        {
+            cout << sub[i];
+        }
     }
-    else if(oper=='*')
+
+    else if (oper == '*')
     {
         int result[30] = {0};
         cout << "Product is: ";
 
-    
-        for (int i = 14; i >= 0; i--) 
+        for (int i = 14; i >= 0; i--)
         {
-            for (int j = 14; j >= 0; j--) 
+            for (int j = 14; j >= 0; j--)
             {
                 int pos = i + j + 1;
-                int mul = list[i] * list2[j];
+                mul = list[i] * list2[j];
                 result[pos] += mul;
                 result[pos - 1] += result[pos] / 10;
                 result[pos] %= 10;
-
             }
-            cout << result[i];
-
         }
 
+        for (int i = 0; i < 30; i++)
+        {
+            cout << result[i];
+        }
     }
+
     else if (oper == '%')
     {
-        int temp[15] = {0};
-
+        int temp[15] = {};
         for (int i = 0; i < 15; i++)
         {
             temp[i] = list[i];
@@ -124,28 +128,29 @@ int main()
         while (true)
         {
             bool greater = false;
+            bool equal = true;
             for (int i = 0; i < 15; i++)
             {
                 if (temp[i] > list2[i])
                 {
                     greater = true;
+                    equal = false;
                     break;
                 }
                 else if (temp[i] < list2[i])
                 {
                     greater = false;
+                    equal = false;
                     break;
                 }
             }
 
-            if (!greater && !equal(temp, list2, 15))
+            if (!greater && !equal)
             {
                 break;
             }
 
             int borrow = 0;
-            cout << "Remainder is: ";
-        
             for (int i = 14; i >= 0; i--)
             {
                 int diff = temp[i] - list2[i] - borrow;
@@ -159,11 +164,14 @@ int main()
                     borrow = 0;
                 }
                 temp[i] = diff;
-                cout <<temp[i];
-        
             }
+        }
 
-        }   
+        cout << "Remainder is: ";
+        for (int i = 0; i < 15; i++)
+        {
+            cout << temp[i];
+        }
     }
 
     else if (oper == 'p')
@@ -185,23 +193,25 @@ int main()
                 for (int j = 29; j >= 0; j--)
                 {
                     int pos = i + j + 1;
-                    int mul = list[i] * result[j];
+                    mul = list[i] * result[j];
                     temp[pos] += mul;
                     temp[pos - 1] += temp[pos] / 10;
                     temp[pos] %= 10;
                 }
             }
-            cout<<"Power is: ";
+
             for (int i = 0; i < 30; i++)
             {
                 result[i] = temp[i];
-                cout<<result[i];
-
             }
         }
+
+        cout << "Power is: ";
+        for (int i = 0; i < 30; i++)
+        {
+            cout << result[i];
+        }
     }
-
-
 
     return 0;
 }
