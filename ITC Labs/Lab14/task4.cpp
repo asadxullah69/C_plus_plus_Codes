@@ -6,11 +6,10 @@ int main()
     int count=0;
     for(int i=0;arr[i]!='\0';i++)
     {
-        count++;
-    }
-    for(int i=count;i>=0;i--)
-    {
-        cout<<arr[i];
-        cout<<" ";
+        if(i%2==0)
+        {
+            cout<<arr[i];
+            cout<<" ";
+        }
     }
 }

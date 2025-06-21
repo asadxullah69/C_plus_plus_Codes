@@ -8,9 +8,6 @@ int main()
     {
         count++;
     }
-    for(int i=count;i>=0;i--)
-    {
-        cout<<arr[i];
-        cout<<" ";
-    }
+    cout<<"Lenght of array is "<<count<<endl;
+    
 }
